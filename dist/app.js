@@ -26,9 +26,23 @@ class AccountingDepartment extends Department {
     constructor(id, reports) {
         super(id, "Accounting");
         this.reports = reports;
+        this.lastReport = reports[0];
+    }
+    get mostRecentReport() {
+        if (this.lastReport) {
+            return this.lastReport;
+        }
+        throw new Error("レポートが見つかりません");
+    }
+    set mostRecentReport(value) {
+        if (!value) {
+            throw new Error("正しい値を設定してください");
+        }
+        this.addReport(value);
     }
     addReport(text) {
         this.reports.push(text);
+        this.lastReport = text;
     }
     printReports() {
         console.log(this.reports);
@@ -47,7 +61,9 @@ it.describe();
 it.printEmployeeInformation();
 console.log(it);
 const accounting = new AccountingDepartment("d2", []);
+accounting.mostRecentReport = "通期会計レポート";
 accounting.addReport("Something");
+console.log(accounting.mostRecentReport);
 accounting.printReports();
 accounting.addEmployee("Max");
 accounting.addEmployee("Manu");
