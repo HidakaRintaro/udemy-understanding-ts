@@ -5,3 +5,4 @@ function sedAnalytics(data) {
     logged = true;
 }
 sedAnalytics("The data");
+//# sourceMappingURL=analytics.js.map
