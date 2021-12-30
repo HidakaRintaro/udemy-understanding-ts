@@ -105,5 +105,5 @@
 
     "noEmitOnError": true
   },
-  "exclude": ["node_modules", "section2", "section3"] // would be default (node_modules)
+  "exclude": ["node_modules", "section2", "section3", "section4"] // would be default (node_modules)
 }
