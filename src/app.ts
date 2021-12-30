@@ -18,12 +18,12 @@ age = 29;
 
 // console.log(result);
 
-const add = (a: number, b: number) => a + b;
+const add = (a: number, b: number = 1) => a + b;
 
 const printOutput: (output: string | number) => void = (output) =>
   console.log(output);
 
-console.log(add(2, 5));
+console.log(add(2));
 
 const button = document.querySelector("button");
 
