@@ -17,14 +17,18 @@ function Logger(logString) {
 }
 function WithTemplate(template, hookId) {
     console.log("TEMPLATEファクトリ");
-    return function (constructor) {
-        console.log("テンプレートを表示");
-        const hookEl = document.getElementById(hookId);
-        const p = new constructor();
-        if (hookEl) {
-            hookEl.innerHTML = template;
-            hookEl.querySelector("h1").textContent = p.name;
-        }
+    return function (originalConstructor) {
+        return class extends originalConstructor {
+            constructor(..._) {
+                super();
+                console.log("テンプレートを表示");
+                const hookEl = document.getElementById(hookId);
+                if (hookEl) {
+                    hookEl.innerHTML = template;
+                    hookEl.querySelector("h1").textContent = this.name;
+                }
+            }
+        };
     };
 }
 let Person = class Person {
@@ -37,8 +41,6 @@ Person = __decorate([
     Logger("ログ出力中"),
     WithTemplate("<h1>Personオブジェクト</h1>", "app")
 ], Person);
-const pers = new Person();
-console.log(pers);
 function Log(target, propertyName) {
     console.log("Property デコレータ");
     console.log(target, propertyName);
