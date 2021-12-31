@@ -111,6 +111,7 @@
     "section3",
     "section4",
     "section5",
-    "section6"
+    "section6",
+    "section7"
   ] // would be default (node_modules)
 }
